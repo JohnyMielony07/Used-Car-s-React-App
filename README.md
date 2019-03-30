@@ -1,4 +1,4 @@
-# Used-Car-s-React-App
+# Used Car's React App
 
 ## Table of contents
 * [General info](#general-info)
