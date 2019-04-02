@@ -1,10 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
+import Input from '../../../components/UI/Input/Input';
 
 class filter extends Component {
     render() {
         return (
             <div>
-                Filter
+                <Input
+                    elementType="text"
+                />
             </div>
         )
     }
