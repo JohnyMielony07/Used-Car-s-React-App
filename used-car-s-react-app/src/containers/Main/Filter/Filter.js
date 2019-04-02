@@ -7,7 +7,15 @@ class filter extends Component {
         return (
             <div>
                 <Input
+                    key="1"
+                    elementType="select"
+                    options="Audi, BMW, Mercedes, Toyota"
+                    label="ADSD"
+                />
+                <Input
+                    key="2"
                     elementType="text"
+                    label="ADSD"
                 />
             </div>
         )
