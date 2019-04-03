@@ -9,13 +9,54 @@ class filter extends Component {
                 <Input
                     key="1"
                     elementType="select"
+                    inputName="cars"
+                    inputLabel="Cars"
                     options="Audi, BMW, Mercedes, Toyota"
-                    label="ADSD"
                 />
                 <Input
                     key="2"
-                    elementType="text"
-                    label="ADSD"
+                    elementType="select"
+                    inputName="type"
+                    inputLabel="Type"
+                    options="coupe, sedan, kombi, SUV, VAN"
+                />
+                <Input
+                    key="3"
+                    elementType="number"
+                    inputName="price from"
+                    inputLabel="Price range"
+                />
+                <Input
+                    key="4"
+                    elementType="number"
+                    inputName="price to"
+                    inputLabel="-"
+                />
+                <Input
+                    key="4"
+                    elementType="number"
+                    inputName="price from"
+                    inputLabel="Mileage range"
+                />
+                <Input
+                    key="5"
+                    elementType="number"
+                    inputName="price to"
+                    inputLabel="-"
+                />
+                <Input
+                    key="6"
+                    elementType="select"
+                    inputName="engine"
+                    inputLabel="Engine"
+                    options="Petrol, Diesel, Hybrid, EV"
+                />
+                <Input
+                    key="7"
+                    elementType="select"
+                    inputName="transmission"
+                    inputLabel="Transmission"
+                    options="Automatic, Manual"
                 />
             </div>
         )
