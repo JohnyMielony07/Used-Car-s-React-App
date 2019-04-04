@@ -3,7 +3,8 @@ import React from 'react';
 const carCard = (props) => {
     return (
         <div>
-            Car Card
+            <p>{props.make}</p>
+            <p>{props.model}</p>
         </div>
     )
 }

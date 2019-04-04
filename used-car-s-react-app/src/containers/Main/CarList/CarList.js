@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 import axios from 'axios';
 
+import CarCard from './CarCard/CarCard';
+
 class carList extends Component {
     state = {
         carList: []
@@ -21,6 +23,21 @@ class carList extends Component {
         return (
             <Auxiliary>
                 Car's list here
+                {this.state.carList.map(car => {
+                    if(car) {
+                        return (
+                            <CarCard 
+                            key={car.id}
+                            make={car.make}
+                            model={car.model}/>
+                        )
+                    }
+                }
+                    
+                    
+                )
+
+                }
             </Auxiliary>
         )
     }
