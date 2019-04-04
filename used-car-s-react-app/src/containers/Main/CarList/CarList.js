@@ -8,10 +8,12 @@ class carList extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://used-cars-react-app.firebaseio.com/car-s-list")
+        
+
+        axios.get("https://used-cars-react-app.firebaseio.com/car-s-list.json")
         .then(response => {
             this.setState({carList: response.data});
-            console.log(response);
+            console.log(this.state);
         });
     }
 
