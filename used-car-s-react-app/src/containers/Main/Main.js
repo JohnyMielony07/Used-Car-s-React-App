@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Filter from './Filter/Filter';
+import CarList from './CarList/CarList';
 
 class main extends Component {
     render() {
@@ -8,6 +9,7 @@ class main extends Component {
             <div>
                 Main
                 <Filter />
+                <CarList />
             </div>
         )
     }
