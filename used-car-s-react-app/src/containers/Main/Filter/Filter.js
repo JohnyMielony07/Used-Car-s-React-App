@@ -33,26 +33,26 @@ class filter extends Component {
                     inputLabel="-"
                 />
                 <Input
-                    key="4"
+                    key="5"
                     elementType="number"
                     inputName="price from"
                     inputLabel="Mileage range"
                 />
                 <Input
-                    key="5"
+                    key="6"
                     elementType="number"
                     inputName="price to"
                     inputLabel="-"
                 />
                 <Input
-                    key="6"
+                    key="7"
                     elementType="select"
                     inputName="engine"
                     inputLabel="Engine"
                     options="Petrol, Diesel, Hybrid, EV"
                 />
                 <Input
-                    key="7"
+                    key="8"
                     elementType="select"
                     inputName="transmission"
                     inputLabel="Transmission"

@@ -7,11 +7,11 @@ const input = (props) => {
     switch (props.elementType) {
         case ('text'):
             inputElement = <input type="text" name={props.inputName} />
-            inputLabel = <label for={props.inputName? props.inputName : null}>{props.inputLabel}</label>            
+            inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>            
             break;
         case ('number'):
             inputElement = <input type="number" name={props.inputName} />
-            inputLabel = <label for={props.inputName? props.inputName : null}>{props.inputLabel}</label>
+            inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>
             break;
         case ('select'):
             inputElement = (<select
@@ -27,7 +27,7 @@ const input = (props) => {
                 ))}
             </select>
             )
-            inputLabel = <label for={props.inputName? props.inputName : null}>{props.inputLabel}</label>
+            inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>
             break;
     }
     return (
