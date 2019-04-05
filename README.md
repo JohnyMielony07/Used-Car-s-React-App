@@ -19,7 +19,8 @@ This project is a simple react application which allows browsing used car. Appli
 ## Technologies
 * React 16.8
 * Redux
-* CSS3/SASS
+* CSS3
+* Styled components
 * FireBase
 
 ## Setup
