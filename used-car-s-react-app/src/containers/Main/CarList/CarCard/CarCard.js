@@ -1,11 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const carCard = (props) => {
+
+    const Wrapper = styled.div`
+  padding: 4em;
+  background: papayawhip;
+  display: inline-block;
+`;
+
     return (
-        <div>
+        <Wrapper>
             <p>{props.make}</p>
             <p>{props.model}</p>
-        </div>
+        </Wrapper>
     )
 }
 
