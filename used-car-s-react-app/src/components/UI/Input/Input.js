@@ -1,4 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Input = styled.input`
+  
+`;
+
+const Wrapper = styled.div`
+  margin:.3em;
+`;
 
 const input = (props) => {
     let inputElement = null;
@@ -6,11 +15,11 @@ const input = (props) => {
 
     switch (props.elementType) {
         case ('text'):
-            inputElement = <input type="text" name={props.inputName} />
+            inputElement = <Input type="text" name={props.inputName} />
             inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>            
             break;
         case ('number'):
-            inputElement = <input type="number" name={props.inputName} />
+            inputElement = <Input type="number" name={props.inputName} />
             inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>
             break;
         case ('select'):
@@ -31,9 +40,9 @@ const input = (props) => {
             break;
     }
     return (
-        <div>
+        <Wrapper>
             <p>{inputLabel} {inputElement}</p>
-        </div>
+        </Wrapper>
     )
 }
 

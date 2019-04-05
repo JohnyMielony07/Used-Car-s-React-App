@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 
 import Input from '../../../components/UI/Input/Input';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display:flex;
+  justify-content: center;
+  background-color: #D7D7D7;
+`;
+
 
 class filter extends Component {
     render() {
         return (
-            <div>
+            <Wrapper>
                 <Input
                     key="1"
                     elementType="select"
@@ -58,7 +66,7 @@ class filter extends Component {
                     inputLabel="Transmission"
                     options="Automatic, Manual"
                 />
-            </div>
+            </Wrapper>
         )
     }
 }

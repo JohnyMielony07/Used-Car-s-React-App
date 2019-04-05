@@ -7,7 +7,6 @@ class main extends Component {
     render() {
         return (
             <div>
-                Main
                 <Filter />
                 <CarList />
             </div>
