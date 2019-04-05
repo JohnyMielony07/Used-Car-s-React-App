@@ -38,7 +38,15 @@ class carList extends Component {
                                     key={car.id}
                                     make={car.make}
                                     model={car.model}
-                                    img={car.main_image} />
+                                    img={car.main_image}
+                                    power={car.power}
+                                    engine={car.engine}
+                                    mileage={car.mileage}
+                                    price={car.price}
+                                    transmission={car.transmission}
+                                    type={car.type}
+                                    year={car.year}
+                                     />
                             )
                         }
                     })}
