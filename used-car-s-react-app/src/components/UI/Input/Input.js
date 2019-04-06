@@ -38,6 +38,20 @@ const input = (props) => {
             )
             inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>
             break;
+        case ('selectSingle'):
+        inputElement = (<select
+            name={props.inputName}
+        //value={props.value}
+        // onChange={props.changed}
+        >
+            {props.options.split(', ').map(el => (
+                <option key={el} value={el}>
+                    {el}
+                </option>
+            ))}
+        </select>
+        )
+        inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>
     }
     return (
         <Wrapper>
