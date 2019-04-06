@@ -7,6 +7,9 @@ class Header extends Component {
                 <p>
                     Best used cars in Europe!
                 </p>
+                <div>
+                    <a href="/add-car">Add used car!</a>
+                </div>
             </div>
         )
     }
