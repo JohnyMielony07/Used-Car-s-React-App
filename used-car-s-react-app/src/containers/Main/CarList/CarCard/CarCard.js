@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     margin: 2em;
     background: #F8F8F8;
     width: 15em;
-    height: 16.5em;
+    height: 19em;
     box-shadow: 0px 2px 8px -1px rgba(0,0,0,0.75);
     `;
 
@@ -83,6 +83,21 @@ const RightAside = styled.div`
     }
     `;
 
+const Anchor = styled.div`
+    height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #B9F59C;
+
+    a, a:link, a:visited, a:active {
+        text-decoration: none;
+        color: black;
+        text-transform: uppercase;
+        
+    }
+`; 
+
 const carCard = (props) => {
 
     const src = "data:image/png;base64," + props.img;
@@ -118,6 +133,9 @@ const carCard = (props) => {
                     </Aside>
 
                 </Description>
+                <Anchor>
+                    <a href='/car'>Read more</a>
+                </Anchor>
             </Wrapper>
         </Auxiliary>
     )

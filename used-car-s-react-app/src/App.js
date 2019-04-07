@@ -6,6 +6,7 @@ import './App.css';
 import Header from './containers/Header/Header';
 import Main from './containers/Main/Main';
 import AddCar from './containers/AddCar/AddCar';
+import Car from './containers/Car/Car';
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
           <main>
             <Route path="/" exact component={Main} />
             <Route path="/add-car" component={AddCar} />
-
+            <Route path="/car" component={Car} />
           </main>
           <footer>
 
