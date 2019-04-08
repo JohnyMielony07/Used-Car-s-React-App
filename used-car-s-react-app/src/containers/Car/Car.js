@@ -38,6 +38,20 @@ const Image = styled.div`
 `;
 
 const Description = styled.div`
+    font-size: 1.5em;
+    width: 75%;
+    margin: 2em auto;
+    box-shadow: 0px 2px 8px -1px rgba(0,0,0,0.75);
+    
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+`;
+
+const Feature = styled.div`
+    width: 20em;
 
 `;
 
@@ -87,13 +101,18 @@ class Car extends Component {
                             {this.state.car.mileage}
                         </Info>
                     </InfoWrapper>
+
+
                     <Description>
                         Key features:
-                        {this.state.car.features.split(', ').map(el => (
-                            <p key={el}>
-                                {el}
-                            </p>
-                        ))}
+                        <div>
+                            {this.state.car.features.split(', ').map(el => (
+                                <Feature key={el}>
+                                    {el}
+                                </Feature>
+                            ))}
+                        </div>
+
                     </Description>
                 </Auxiliary>)
         }
@@ -101,7 +120,7 @@ class Car extends Component {
 
         return (
             <div>
-                    {car}
+                {car}
             </div>
         )
     }
