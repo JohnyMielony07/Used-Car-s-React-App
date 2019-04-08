@@ -1,17 +1,7 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import Auxiliary from '../../../../hoc/Auxiliary/Auxiliary';
 
-const GlobalStyle = createGlobalStyle`
-    body {
-        padding: 0;
-        margin: 0;
-    }
-
-    *, *::before, *::after {
-        box-sizing: border-box;
-    }
-    `;
 
 const Wrapper = styled.div`
     box-sizing: border-box;
@@ -104,7 +94,6 @@ const carCard = (props) => {
 
     return (
         <Auxiliary>
-            <GlobalStyle />
             <Wrapper>
                 <ImageWrapper>
                     <Image src={src} />

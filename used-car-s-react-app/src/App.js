@@ -1,31 +1,47 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-
+import Auxiliary from './hoc/Auxiliary/Auxiliary';
 import './App.css';
 import Header from './containers/Header/Header';
 import Main from './containers/Main/Main';
 import AddCar from './containers/AddCar/AddCar';
 import Car from './containers/Car/Car';
+import styled, { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+    body {
+        padding: 0;
+        margin: 0;
+        //background-color: grey;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+    `;
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <header className="App-header">
-            <Header />
-          </header>
-          <main>
-            <Route path="/" exact component={Main} />
-            <Route path="/add-car" component={AddCar} />
-            <Route path="/car" component={Car} />
-          </main>
-          <footer>
+      <Auxiliary>
+        <GlobalStyle />
+        <BrowserRouter>
+          <div className="App">
+            <header className="App-header">
+              <Header />
+            </header>
+            <main>
+              <Route path="/" exact component={Main} />
+              <Route path="/add-car" component={AddCar} />
+              <Route path="/car" component={Car} />
+            </main>
+            <footer>
 
-          </footer>
-        </div>
-      </BrowserRouter>
+            </footer>
+          </div>
+        </BrowserRouter>
+      </Auxiliary>
     );
   }
 }
