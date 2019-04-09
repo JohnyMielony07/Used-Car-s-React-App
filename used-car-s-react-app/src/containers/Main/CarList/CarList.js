@@ -40,6 +40,7 @@ class carList extends Component {
                     console.log(car.main_image);
                     return (
                         <CarCard
+                            id={car.id}
                             key={car.id}
                             make={car.make}
                             model={car.model}

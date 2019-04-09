@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Auxiliary from './hoc/Auxiliary/Auxiliary';
 import './App.css';
 import Header from './containers/Header/Header';
@@ -32,9 +32,11 @@ class App extends Component {
               <Header />
             </header>
             <main>
-              <Route path="/" exact component={Main} />
-              <Route path="/add-car" component={AddCar} />
-              <Route path="/car" component={Car} />
+              <Switch>
+                <Route path="/" exact component={Main} />
+                <Route path="/add-car" component={AddCar} />
+                <Route path="/car/:id" component={Car} />
+              </Switch>
             </main>
             <footer>
 

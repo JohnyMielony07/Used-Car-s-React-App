@@ -67,7 +67,7 @@ class Car extends Component {
 
     componentDidMount() {
 
-        axios.get("https://used-cars-react-app.firebaseio.com/Cars/1.json")
+        axios.get("https://used-cars-react-app.firebaseio.com/Cars/" + this.props.match.params.id + ".json")
             .then(response => {
                 this.setState({ car: response.data, loading: false });
                 console.log(this.state.car.engine);

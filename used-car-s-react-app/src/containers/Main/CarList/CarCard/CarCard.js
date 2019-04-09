@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Auxiliary from '../../../../hoc/Auxiliary/Auxiliary';
+import { Link } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -86,7 +87,7 @@ const Anchor = styled.div`
         text-transform: uppercase;
         
     }
-`; 
+`;
 
 const carCard = (props) => {
 
@@ -124,6 +125,14 @@ const carCard = (props) => {
                 </Description>
                 <Anchor>
                     <a href='/car'>Read more</a>
+
+                    <Link to={'car/' + props.id} key={props.id}>
+                        <p                           
+                            clicked={() => this.postSelectedHandler(props.id)}>
+                            Read more
+                        </p>
+
+                    </Link>
                 </Anchor>
             </Wrapper>
         </Auxiliary>
