@@ -46,8 +46,10 @@ const Description = styled.div`
     div {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        
+        justify-content: ${({ base }) => base ? 'space-between' : 'space-around'};
     }
+    
 `;
 
 const Feature = styled.div`
@@ -56,7 +58,22 @@ const Feature = styled.div`
 `;
 
 const Info = styled.div`
+`;
 
+const DescRow = styled.div`
+    margin: 0 auto;
+    width: 70%;
+    :not(last-child) {
+        ${({ bottom }) => bottom ? 'border-bottom: .05em solid rgba(0,0,0,0.75)' : null};
+        
+    }
+    
+`;
+
+const DescTitle = styled.p`
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: .2em 0;
 `;
 
 class Car extends Component {
@@ -102,9 +119,29 @@ class Car extends Component {
                         </Info>
                     </InfoWrapper>
 
+                    <Description key="1" base>
+                        <DescTitle>Base Specifications</DescTitle>
+                        <DescRow bottom>
+                            <p>Transmission</p>
+                            <p>{this.state.car.transmission}</p>
+                        </DescRow>
+                        <DescRow bottom>
+                            <p>Drive</p>
+                            <p>{this.state.car.drive}</p>
+                        </DescRow>
+                        <DescRow bottom>
+                            <p>Engine</p>
+                            <p>{this.state.car.engine_capacity} {this.state.car.engine}</p>
+                        </DescRow>
+                        <DescRow>
+                            <p>Horsepower</p>
+                            <p>{this.state.car.power} HP</p>
+                        </DescRow>
+                    </Description>
 
-                    <Description>
-                        Key features:
+
+                    <Description key="2">
+                        <DescTitle>Key features</DescTitle>
                         <div>
                             {this.state.car.features.split(', ').map(el => (
                                 <Feature key={el}>

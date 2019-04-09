@@ -114,7 +114,7 @@ const carCard = (props) => {
                     <Aside left>
                         <p>{props.mileage} Miles</p>
                         <p>{props.engine}</p>
-                        <p>{props.power} KM</p>
+                        <p>{props.power} HP</p>
                     </Aside>
                     <Aside>
                         <p>{props.year}</p>
