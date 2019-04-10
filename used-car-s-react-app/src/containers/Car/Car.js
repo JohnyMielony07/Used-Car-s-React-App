@@ -4,7 +4,7 @@ import axios from 'axios';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import styled from 'styled-components';
 
-
+import ImageSlider from './ImageSlider/ImageSlider';
 
 const NameWrapper = styled.div`
     height: 4.5em;
@@ -26,6 +26,11 @@ const InfoWrapper = styled.div`
     width: 75%;
     margin: 0 auto;
     display: flex;
+`;
+
+const SliderWrapper = styled.div`
+    width: 75%;
+    margin: 0 auto;
 `;
 
 const Image = styled.div`
@@ -100,7 +105,7 @@ class Car extends Component {
         if (this.state.loading) {
             car = <Spinner />
         } else {
-            const src = "data:image/png;base64," + this.state.car.img;
+            const images = this.state.car.images;
             car = (
                 <Auxiliary>
                     <NameWrapper>
@@ -108,8 +113,10 @@ class Car extends Component {
                     </NameWrapper>
                     <InfoWrapper>
                         <Image>
-                            <img src={src} />
+                            <img src={images[2]} />
+
                         </Image>
+
                         <Info>
                             <p>Price:</p>
                             {this.state.car.price}
@@ -118,7 +125,9 @@ class Car extends Component {
                             {this.state.car.mileage}
                         </Info>
                     </InfoWrapper>
-
+                    <SliderWrapper>
+                        <ImageSlider images={images} />
+                    </SliderWrapper>
                     <Description key="1" base>
                         <DescTitle>Base Specifications</DescTitle>
                         <DescRow bottom>
