@@ -7,24 +7,31 @@ const Img = styled.img`
     
 `;
 
+const MainImage = styled.img`
+    width: 20em;
+    
+`;
+
 const Slider = styled.div`
     
 display: flex;
 justify-content: space-between;
 `;
 
+
 class ImageSlider extends Component {
 
-
-
     state = {
-        images: null
+        images: null,
+        mainImageIndex: 0
     }
+
+    ChangeImageHandler = (index) => {
+        this.setState({mainImageIndex: index});
+    };
 
     componentDidMount() {
         var imgs = [];
-        console.log('do stuff');
-        console.log(this.props.images[1]);
         this.props.images.map(el => {
             if (el) {
                 imgs.push(el);
@@ -36,20 +43,25 @@ class ImageSlider extends Component {
 
     render() {
         let imgsArr = [];
+        let mainImage = null;
+
+
         if (this.state.images) {
-            this.state.images.map(el => {
-                imgsArr.push(<Img src={el} />);
+            console.log('przeladowuje');
+            this.state.images.map((el, index) => {
+                imgsArr.push(<Img src={el} key={index} onClick={() => this.ChangeImageHandler(index)} />);
 
-            })
+            });
+
+            mainImage = <MainImage src={this.state.images[this.state.mainImageIndex]} />;
         }
-
-
 
         return (
             <div>
                 Image slider
+                {mainImage}
                 <Slider>
-                    {imgsArr}
+                    {imgsArr}                    
 
                 </Slider>
 
