@@ -2,14 +2,36 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Img = styled.img`
-    width: 10em;
-    height: 7em;
+    width: 100%;
     
 `;
 
+const Figure = styled.figure`
+    width: 10em;
+    height: 3.8em;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+`;
+
 const MainImage = styled.img`
-    width: 20em;
-    
+    width: 100%;
+    overflow: hidden;
+`;
+
+const MainFigure = styled.figure`
+    width: 100%;
+    height: 14em;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    @media(min-width: 1100px) {
+        height: 16em;
+    }
+    @media(min-width: 1300px) {
+        height: 22em;
+    }
 `;
 
 const Slider = styled.div`
@@ -27,7 +49,7 @@ class ImageSlider extends Component {
     }
 
     ChangeImageHandler = (index) => {
-        this.setState({mainImageIndex: index});
+        this.setState({ mainImageIndex: index });
     };
 
     componentDidMount() {
@@ -49,7 +71,11 @@ class ImageSlider extends Component {
         if (this.state.images) {
             console.log('przeladowuje');
             this.state.images.map((el, index) => {
-                imgsArr.push(<Img src={el} key={index} onClick={() => this.ChangeImageHandler(index)} />);
+                imgsArr.push(
+                    <Figure>
+                        <Img src={el} key={index} onClick={() => this.ChangeImageHandler(index)} />
+                    </Figure>
+                );
 
             });
 
@@ -58,10 +84,11 @@ class ImageSlider extends Component {
 
         return (
             <div>
-                Image slider
-                {mainImage}
+                <MainFigure>
+                    {mainImage}
+                </MainFigure>
                 <Slider>
-                    {imgsArr}                    
+                    {imgsArr}
 
                 </Slider>
 

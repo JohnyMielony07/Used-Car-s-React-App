@@ -37,9 +37,7 @@ const Image = styled.div`
     width: 65%;
     height: 100%;
 
-    img {
-        width: 100%;
-    }
+    
 `;
 
 const Description = styled.div`
@@ -113,8 +111,8 @@ class Car extends Component {
                     </NameWrapper>
                     <InfoWrapper>
                         <Image>
-                            <img src={images[2]} />
-
+                            {/* <img src={images[2]} /> */}
+                            <ImageSlider images={images} />
                         </Image>
 
                         <Info>
@@ -126,7 +124,7 @@ class Car extends Component {
                         </Info>
                     </InfoWrapper>
                     <SliderWrapper>
-                        <ImageSlider images={images} />
+                        
                     </SliderWrapper>
                     <Description key="1" base>
                         <DescTitle>Base Specifications</DescTitle>
