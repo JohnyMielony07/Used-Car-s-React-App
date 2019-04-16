@@ -15,11 +15,11 @@ const input = (props) => {
 
     switch (props.elementType) {
         case ('text'):
-            inputElement = <Input type="text" name={props.inputName} />
-            inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>            
+            inputElement = <Input type="text" name={props.inputName} onChange={props.inputValue} />
+            inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>
             break;
         case ('number'):
-            inputElement = <Input type="number" name={props.inputName} />
+            inputElement = <Input type="number" name={props.inputName} onChange={props.inputValue} />
             inputLabel = <label htmlFor={props.inputName? props.inputName : null}>{props.inputLabel}</label>
             break;
         case ('select'):
@@ -30,7 +30,9 @@ const input = (props) => {
             // onChange={props.changed}
             >
                 {props.options.split(', ').map(el => (
-                    <option key={el} value={el}>
+                    <option 
+                        key={el} 
+                        value={el}>
                         {el}
                     </option>
                 ))}
@@ -40,7 +42,8 @@ const input = (props) => {
             break;
         case ('selectSingle'):
         inputElement = (<select
-            name={props.inputName}
+            name={props.inputName}            
+            onChange={props.inputValue}
         //value={props.value}
         // onChange={props.changed}
         >
