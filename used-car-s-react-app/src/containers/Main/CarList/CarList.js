@@ -35,9 +35,11 @@ class carList extends Component {
         } else {
 
             var cars = [];
+            let carsNumber = 0;
 
             for (const i in this.state.carList) {
                 const car = this.state.carList[i];
+                carsNumber++;
                 cars.push(
                     <CarCard
                             id={car.id}
@@ -55,7 +57,7 @@ class carList extends Component {
                         />
                 )
             }
-            console.log("to jest state: " + this.state);
+            console.log("liczba samochodów: " + carsNumber);
 
             // this.state.carList.forEach((item, index) => {
             //     console.log(item);
