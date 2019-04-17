@@ -122,14 +122,8 @@ const carCard = (props) => {
 
                 </Description>
                 <Anchor>
-                    <a href='/car'>Read more</a>
-
                     <Link to={'car/' + props.id} key={props.id}>
-                        <p                           
-                            onClick={() => this.postSelectedHandler(props.id)}>
-                            Read more
-                        </p>
-
+                        <p>Read more</p>
                     </Link>
                 </Anchor>
             </Wrapper>
