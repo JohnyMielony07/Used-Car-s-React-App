@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 import axios from 'axios';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import CarCard from './CarCard/CarCard';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -11,7 +12,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-class carList extends Component {
+class CarList extends Component {
     state = {
         carList: [],
         loading: true
@@ -57,6 +58,7 @@ class carList extends Component {
                         />
                 )
             }
+            this.props.onSetCounter(carsNumber);
             console.log("liczba samochodów: " + carsNumber);
 
             // this.state.carList.forEach((item, index) => {
@@ -95,9 +97,22 @@ class carList extends Component {
                 <Wrapper>
                     {cars}
                 </Wrapper>
+                <p>{this.props.counter}</p>
             </Auxiliary>
         )
-    }
+    }    
 }
 
-export default carList;
+const mapStateToProps = state => {
+    return {
+        counter: state.carsCounter
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onSetCounter: (carsNumber) => dispatch({type: 'SET', ctr: carsNumber})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CarList);
