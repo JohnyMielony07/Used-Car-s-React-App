@@ -91,13 +91,11 @@ const Anchor = styled.div`
 
 const carCard = (props) => {
 
-    const src = "data:image/png;base64," + props.img;
-
     return (
         <Auxiliary>
             <Wrapper>
                 <ImageWrapper>
-                    <Image src={src} />
+                    <Image src={props.img} />
                 </ImageWrapper>
 
                 <BaseInfo>
@@ -128,7 +126,7 @@ const carCard = (props) => {
 
                     <Link to={'car/' + props.id} key={props.id}>
                         <p                           
-                            clicked={() => this.postSelectedHandler(props.id)}>
+                            onClick={() => this.postSelectedHandler(props.id)}>
                             Read more
                         </p>
 

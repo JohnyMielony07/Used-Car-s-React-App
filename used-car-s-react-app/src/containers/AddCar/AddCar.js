@@ -1,47 +1,69 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
 import Input from '../../components/UI/Input/Input';
 class AddCar extends Component {
 
+    state = {
+        make: null,
+        model: null,
+        price: null,
+        year: null,
+        mileage: null,
+        type: "coupe",
+        engine: "Petrol",
+        power: null,
+        transmission: "automatic",
+        main_image: null
+    }
+
 
     inputMakeHandler = (event) => {
-        console.log("Make" + event.target.value);
+        this.setState({ make: event.target.value });
+        console.log(this.state);
     }
 
     inputModelHandler = (event) => {
-        console.log("Model" + event.target.value);
+        this.setState({ model: event.target.value });
+        console.log(this.state);
     }
 
     inputPriceHandler = (event) => {
-        console.log("Price" + event.target.value);
+        this.setState({ price: event.target.value });
+        console.log(this.state);
     }
 
     inputYearHandler = (event) => {
-        console.log("Year" + event.target.value);
+        this.setState({ year: event.target.value });
     }
 
     inputMileageHandler = (event) => {
-        console.log("Mileage" + event.target.value);
+        this.setState({ mileage: event.target.value });
     }
 
     inputTypeHandler = (event) => {
-        console.log("Type" + event.target.value);
+        this.setState({ type: event.target.value });
     }
 
     inputEngineHandler = (event) => {
-        console.log("Engine" + event.target.value);
-    }
-
-    inputTypeHandler = (event) => {
-        console.log("Type" + event.target.value);
+        this.setState({ engine: event.target.value });
     }
 
     inputPowerHandler = (event) => {
-        console.log("Power" + event.target.value);
+        this.setState({ power: event.target.value });
     }
 
     inputTransmissionHandler = (event) => {
-        console.log("Transimission" + event.target.value);
+        this.setState({ transmission: event.target.value });
+    }
+
+    showAddedCar = () => {
+
+        axios.post('https://used-cars-react-app.firebaseio.com/car-s-list.json', this.state)
+            .then(response => {
+                console.log(response);
+            });
+
     }
 
     render() {
@@ -114,6 +136,7 @@ class AddCar extends Component {
                     options="Automatic, Manual"
                     inputValue={this.inputTransmissionHandler}
                 />
+                <button onClick={this.showAddedCar} >Dodaj</button>
             </div>
         )
     }

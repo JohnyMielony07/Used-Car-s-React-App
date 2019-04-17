@@ -22,24 +22,24 @@ class carList extends Component {
 
         axios.get("https://used-cars-react-app.firebaseio.com/car-s-list.json")
             .then(response => {
+              //  console.log(response.data);
                 this.setState({ carList: response.data, loading: false });
-                console.log(this.state);
+              //  console.log(this.state);
             });
     }
-
-
 
 
     render() {
         if (this.state.loading === true) {
             var cars = <Spinner />;
-        }
-        else {
-            var cars = (this.state.carList.map(car => {
-                if (car) {
-                    console.log(car.main_image);
-                    return (
-                        <CarCard
+        } else {
+
+            var cars = [];
+
+            for (const i in this.state.carList) {
+                const car = this.state.carList[i];
+                cars.push(
+                    <CarCard
                             id={car.id}
                             key={car.id}
                             make={car.make}
@@ -53,10 +53,38 @@ class carList extends Component {
                             type={car.type}
                             year={car.year}
                         />
-                    )
-                }
-            }))
+                )
+            }
+            console.log("to jest state: " + this.state);
+
+            // this.state.carList.forEach((item, index) => {
+            //     console.log(item);
+            // })
+
         }
+        // else {
+        //     var cars = (this.state.carList.map(car => {
+        //         if (car) {
+        //             console.log(car.main_image);
+        //             return (
+        //                 <CarCard
+        //                     id={car.id}
+        //                     key={car.id}
+        //                     make={car.make}
+        //                     model={car.model}
+        //                     img={car.main_image}
+        //                     power={car.power}
+        //                     engine={car.engine}
+        //                     mileage={car.mileage}
+        //                     price={car.price}
+        //                     transmission={car.transmission}
+        //                     type={car.type}
+        //                     year={car.year}
+        //                 />
+        //             )
+        //         }
+        //     }))
+        // }
 
 
         return (
