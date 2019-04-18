@@ -14,7 +14,7 @@ class AddCar extends Component {
         engine: "Petrol",
         power: null,
         transmission: "automatic",
-        main_image: null
+        main_image: null,
     }
 
 
@@ -59,6 +59,13 @@ class AddCar extends Component {
 
     inputFileHandler = (event) => {
         console.log(event.target.files[0]);
+        var fileToLoad = event.target.files[0];
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(fileToLoad);
+        fileReader.onload = (fileLoadedEvent) => {
+            var base64value = fileLoadedEvent.target.result;
+            this.setState({ main_image: base64value });
+        }        
     }
 
     showAddedCar = () => {
