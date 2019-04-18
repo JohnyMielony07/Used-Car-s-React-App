@@ -57,6 +57,10 @@ class AddCar extends Component {
         this.setState({ transmission: event.target.value });
     }
 
+    inputFileHandler = (event) => {
+        console.log(event.target.files[0]);
+    }
+
     showAddedCar = () => {
 
         axios.post('https://used-cars-react-app.firebaseio.com/car-s-list.json', this.state)
@@ -136,7 +140,13 @@ class AddCar extends Component {
                     options="Automatic, Manual"
                     inputValue={this.inputTransmissionHandler}
                 />
-                <button onClick={this.showAddedCar} >Dodaj</button>
+                <input 
+                type="file"
+                style={{display: 'none'}}
+                onChange={this.inputFileHandler}
+                ref={fileInput => this.fileInput = fileInput} />
+                <button onClick={() => this.fileInput.click()} >Pick file</button>
+                <button onClick={this.showAddedCar} >Add car</button>
             </div>
         )
     }
