@@ -15,6 +15,7 @@ class AddCar extends Component {
         power: null,
         transmission: "automatic",
         main_image: null,
+        id: null
     }
 
 
@@ -57,6 +58,15 @@ class AddCar extends Component {
         this.setState({ transmission: event.target.value });
     }
 
+
+    componentDidMount() {
+        let uniq = revisedRandId();
+        console.log('added car id: ' + uniq);
+        this.setState({ id: uniq });
+    }
+
+
+
     inputFileHandler = (event) => {
         console.log(event.target.files[0]);
         var fileToLoad = event.target.files[0];
@@ -65,19 +75,38 @@ class AddCar extends Component {
         fileReader.onload = (fileLoadedEvent) => {
             var base64value = fileLoadedEvent.target.result;
             this.setState({ main_image: base64value });
-        }        
+        }
     }
 
+
+
     showAddedCar = () => {
+
+        var id = this.state.id;
 
         axios.post('https://used-cars-react-app.firebaseio.com/car-s-list.json', this.state)
             .then(response => {
                 console.log(response);
             });
 
+        let specialCar = {
+               Make: this.state.make,
+               Model: this.state.model,
+               Images: this.state.main_image
+           
+        }
+
+        axios.put('https://used-cars-react-app.firebaseio.com/Cars/' + id + '.json', specialCar)
+            .then(response => {
+                console.log(response);
+            });
+
+
     }
 
     render() {
+
+
         return (
             <div>
                 Add new car here
@@ -147,16 +176,22 @@ class AddCar extends Component {
                     options="Automatic, Manual"
                     inputValue={this.inputTransmissionHandler}
                 />
-                <input 
-                type="file"
-                style={{display: 'none'}}
-                onChange={this.inputFileHandler}
-                ref={fileInput => this.fileInput = fileInput} />
+                <input
+                    type="file"
+                    style={{ display: 'none' }}
+                    onChange={this.inputFileHandler}
+                    ref={fileInput => this.fileInput = fileInput} />
                 <button onClick={() => this.fileInput.click()} >Pick file</button>
                 <button onClick={this.showAddedCar} >Add car</button>
             </div>
         )
     }
+}
+
+var revisedRandId = () => {
+    var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    var uniqid = randLetter + Date.now();
+    return uniqid;
 }
 
 export default AddCar;
