@@ -44,7 +44,7 @@ justify-content: space-between;
 class ImageSlider extends Component {
 
     state = {
-        images: null,
+        images: [],
         mainImageIndex: 0
     }
 
@@ -69,7 +69,6 @@ class ImageSlider extends Component {
     render() {
         let imgsArr = [];
         let mainImage = null;
-        console.log('zdjecie: ' + this.state.images)
 
 
         if (Array.isArray(this.props.images)) {
