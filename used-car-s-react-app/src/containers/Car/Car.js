@@ -98,12 +98,24 @@ class Car extends Component {
     render() {
 
         let car = null;
+        let features = null;
 
 
         if (this.state.loading) {
             car = <Spinner />
         } else {
-            const images = this.state.car.images;
+            const images = this.state.car.Images;
+
+            console.log(this.state.car);
+
+            if (this.state.car.features) {
+                features = (this.state.car.features.split(', ').map(el => (
+                    <Feature key={el}>
+                        {el}
+                    </Feature>)
+                ))
+            }
+
             car = (
                 <Auxiliary>
                     <NameWrapper>
@@ -124,7 +136,7 @@ class Car extends Component {
                         </Info>
                     </InfoWrapper>
                     <SliderWrapper>
-                        
+
                     </SliderWrapper>
                     <Description key="1" base>
                         <DescTitle>Base Specifications</DescTitle>
@@ -147,14 +159,11 @@ class Car extends Component {
                     </Description>
 
 
+
                     <Description key="2">
                         <DescTitle>Key features</DescTitle>
                         <div>
-                            {this.state.car.features.split(', ').map(el => (
-                                <Feature key={el}>
-                                    {el}
-                                </Feature>
-                            ))}
+                            {features}
                         </div>
 
                     </Description>

@@ -53,34 +53,39 @@ class ImageSlider extends Component {
     };
 
     componentDidMount() {
-        var imgs = [];
-        this.props.images.map(el => {
-            if (el) {
-                imgs.push(el);
-            }
-        })
-        this.setState({ images: imgs })
-
+        if (Array.isArray(this.props.images)) {
+            var imgs = [];
+            this.props.images.map(el => {
+                if (el) {
+                    imgs.push(el);
+                }
+            })
+            this.setState({ images: imgs })
+        } else {
+            this.setState({ images: this.props.images })
+        }
     }
 
     render() {
         let imgsArr = [];
         let mainImage = null;
+        console.log('zdjecie: ' + this.state.images)
 
 
-        if (this.state.images) {
+        if (Array.isArray(this.props.images)) {
             console.log('przeladowuje');
-            this.state.images.map((el, index) => {
-                imgsArr.push(
-                    <Figure>
-                        <Img src={el} key={index} onClick={() => this.ChangeImageHandler(index)} />
-                    </Figure>
-                );
+                this.state.images.map((el, index) => {
+                    imgsArr.push(
+                        <Figure>
+                            <Img src={el} key={index} onClick={() => this.ChangeImageHandler(index)} />
+                        </Figure>
+                    );
+                });
 
-            });
-
-            mainImage = <MainImage src={this.state.images[this.state.mainImageIndex]} />;
-        }
+                mainImage = <MainImage src={this.state.images[this.state.mainImageIndex]} />;
+            } else {
+                mainImage = <MainImage src={this.state.images} />;
+            }        
 
         return (
             <div>
@@ -93,7 +98,6 @@ class ImageSlider extends Component {
                 </Slider>
 
             </div>
-
         )
     }
 }
