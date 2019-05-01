@@ -15,6 +15,7 @@ class AddCar extends Component {
         power: null,
         transmission: "automatic",
         main_image: null,
+        images: [],
         id: null
     }
 
@@ -68,13 +69,25 @@ class AddCar extends Component {
 
 
     inputFileHandler = (event) => {
-        console.log(event.target.files[0]);
+      //  console.log(event.target.files[0]);
         var fileToLoad = event.target.files[0];
         var fileReader = new FileReader();
         fileReader.readAsDataURL(fileToLoad);
         fileReader.onload = (fileLoadedEvent) => {
             var base64value = fileLoadedEvent.target.result;
-            this.setState({ main_image: base64value });
+            if(!this.state.main_image) {
+                this.setState({ main_image: base64value });
+            }
+            this.setState(state => {
+                const images = state.images.concat(base64value);
+
+                return {
+                    ...state,
+                    images
+                }
+            })
+            // stateImages.push(base64value);
+            // this.setState({ images: stateImages});
         }
     }
 
@@ -92,7 +105,7 @@ class AddCar extends Component {
         let specialCar = {
                Make: this.state.make,
                Model: this.state.model,
-               Images: this.state.main_image
+               Images: this.state.images
            
         }
 
@@ -106,6 +119,7 @@ class AddCar extends Component {
 
     render() {
 
+        console.log(this.state);
 
         return (
             <div>
