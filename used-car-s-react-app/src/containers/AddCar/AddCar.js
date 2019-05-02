@@ -16,7 +16,9 @@ class AddCar extends Component {
         transmission: "automatic",
         main_image: null,
         images: [],
-        id: null
+        id: null,
+        featuresInputs: [],
+        features: null
     }
 
 
@@ -59,23 +61,20 @@ class AddCar extends Component {
         this.setState({ transmission: event.target.value });
     }
 
-
     componentDidMount() {
         let uniq = revisedRandId();
         console.log('added car id: ' + uniq);
         this.setState({ id: uniq });
     }
 
-
-
     inputFileHandler = (event) => {
-      //  console.log(event.target.files[0]);
+        //  console.log(event.target.files[0]);
         var fileToLoad = event.target.files[0];
         var fileReader = new FileReader();
         fileReader.readAsDataURL(fileToLoad);
         fileReader.onload = (fileLoadedEvent) => {
             var base64value = fileLoadedEvent.target.result;
-            if(!this.state.main_image) {
+            if (!this.state.main_image) {
                 this.setState({ main_image: base64value });
             }
             this.setState(state => {
@@ -86,27 +85,40 @@ class AddCar extends Component {
                     images
                 }
             })
-            // stateImages.push(base64value);
-            // this.setState({ images: stateImages});
         }
     }
 
-
+    addFeatureHandler = (event) => {
+        this.setState({ features: event.target.value });
+    }
 
     showAddedCar = () => {
 
         var id = this.state.id;
+        let carToList = {
+            make: this.state.make,
+            model: this.state.model,
+            price: this.state.price,
+            year: this.state.year,
+            mileage: this.state.mileage,
+            type: this.state.type,
+            engine: this.state.engine,
+            power: this.state.power,
+            transmission: this.state.transmission,
+            main_image: this.state.main_image,
+            id: this.state.id
+        }
 
-        axios.post('https://used-cars-react-app.firebaseio.com/car-s-list.json', this.state)
+        axios.post('https://used-cars-react-app.firebaseio.com/car-s-list.json', carToList)
             .then(response => {
                 console.log(response);
             });
 
         let specialCar = {
-               Make: this.state.make,
-               Model: this.state.model,
-               Images: this.state.images
-           
+            Make: this.state.make,
+            Model: this.state.model,
+            Images: this.state.images,
+            features: this.state.features
         }
 
         axios.put('https://used-cars-react-app.firebaseio.com/Cars/' + id + '.json', specialCar)
@@ -114,12 +126,9 @@ class AddCar extends Component {
                 console.log(response);
             });
 
-
     }
 
     render() {
-
-        console.log(this.state);
 
         return (
             <div>
@@ -190,6 +199,15 @@ class AddCar extends Component {
                     options="Automatic, Manual"
                     inputValue={this.inputTransmissionHandler}
                 />
+                <div>
+                    <Input
+                        key="10"
+                        elementType="text"
+                        inputName="features"
+                        inputLabel="Features"
+                        inputValue={this.addFeatureHandler}
+                    />
+                </div>
                 <input
                     type="file"
                     style={{ display: 'none' }}
