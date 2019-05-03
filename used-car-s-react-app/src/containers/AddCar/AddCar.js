@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 import Input from '../../components/UI/Input/Input';
+
+const Button = styled.button`
+    
+    `;
+
+
 class AddCar extends Component {
 
     state = {
@@ -20,7 +27,6 @@ class AddCar extends Component {
         featuresInputs: [],
         features: null
     }
-
 
     inputMakeHandler = (event) => {
         this.setState({ make: event.target.value });
@@ -125,10 +131,15 @@ class AddCar extends Component {
             .then(response => {
                 console.log(response);
             });
-
     }
 
     render() {
+
+        let button = <Button onClick={this.showAddedCar} disabled>Add car</Button>
+
+        if(this.state.make && this.state.model && this.state.price && this.state.year && this.state.mileage && this.state.power) {
+            button = <Button onClick={this.showAddedCar} >Add car</Button>
+        }
 
         return (
             <div>
@@ -214,7 +225,7 @@ class AddCar extends Component {
                     onChange={this.inputFileHandler}
                     ref={fileInput => this.fileInput = fileInput} />
                 <button onClick={() => this.fileInput.click()} >Pick file</button>
-                <button onClick={this.showAddedCar} >Add car</button>
+                {button}
             </div>
         )
     }
