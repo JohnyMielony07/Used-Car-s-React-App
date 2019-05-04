@@ -20,6 +20,7 @@ class AddCar extends Component {
         type: "coupe",
         engine: "Petrol",
         power: null,
+        drive: 'AWD',
         transmission: "automatic",
         main_image: null,
         images: [],
@@ -67,6 +68,10 @@ class AddCar extends Component {
         this.setState({ transmission: event.target.value });
     }
 
+    inputDriveHandler = (event) => {
+        this.setState({ drive: event.target.value });
+    }
+
     componentDidMount() {
         let uniq = revisedRandId();
         console.log('added car id: ' + uniq);
@@ -80,6 +85,7 @@ class AddCar extends Component {
         fileReader.readAsDataURL(fileToLoad);
         fileReader.onload = (fileLoadedEvent) => {
             var base64value = fileLoadedEvent.target.result;
+            console.log(fileLoadedEvent);
             if (!this.state.main_image) {
                 this.setState({ main_image: base64value });
             }
@@ -124,7 +130,13 @@ class AddCar extends Component {
             Make: this.state.make,
             Model: this.state.model,
             Images: this.state.images,
-            features: this.state.features
+            features: this.state.features,
+            price: this.state.price,
+            mileage: this.state.mileage,
+            transmission: this.state.transmission,
+            drive: this.state.drive,
+            engine: this.state.engine,
+            power: this.state.power,
         }
 
         axios.put('https://used-cars-react-app.firebaseio.com/Cars/' + id + '.json', specialCar)
@@ -210,9 +222,17 @@ class AddCar extends Component {
                     options="Automatic, Manual"
                     inputValue={this.inputTransmissionHandler}
                 />
+                <Input
+                    key="10"
+                    elementType="selectSingle"
+                    inputName="drive"
+                    inputLabel="Drive"
+                    options="AWD, RWD, FWD"
+                    inputValue={this.inputDriveHandler}
+                />
                 <div>
                     <Input
-                        key="10"
+                        key="11"
                         elementType="text"
                         inputName="features"
                         inputLabel="Features"
