@@ -14,83 +14,63 @@ const Wrapper = styled.div`
 
 class CarList extends Component {
     state = {
-        carList: [],
-        loading: true
+        startedCarList: [],
+        loading: true,
+        filteringProperty: ['engine', 'cars', 'type', 'transmission', 'make']
     }
-
 
     componentDidMount() {
 
         axios.get("https://used-cars-react-app.firebaseio.com/car-s-list.json")
             .then(response => {
-              //  console.log(response.data);
-                this.setState({ carList: response.data, loading: false });
-              //  console.log(this.state);
+                //  console.log(response.data);
+                this.setState({ startedCarList: response.data, loading: false });
+                //  console.log(this.state);
             });
     }
 
-
     render() {
+        var cars = null;
+
         if (this.state.loading === true) {
-            var cars = <Spinner />;
+            cars = <Spinner />;
         } else {
 
-            var cars = [];
+            var carList = this.state.startedCarList;
+            cars = [];
             let carsNumber = 0;
 
-            for (const i in this.state.carList) {
-                const car = this.state.carList[i];
-                carsNumber++;
-                cars.push(
-                    <CarCard
-                            id={car.id}
-                            key={car.id}
-                            make={car.make}
-                            model={car.model}
-                            img={car.main_image}
-                            power={car.power}
-                            engine={car.engine}
-                            mileage={car.mileage}
-                            price={car.price}
-                            transmission={car.transmission}
-                            type={car.type}
-                            year={car.year}
-                        />
-                )
+            for (const j of this.state.filteringProperty) {
+                if (this.props.filter[j]) {
+                    // j -typ filtra
+                    // filter[j] - wartość filtra w globalnym state
+                    carList = filter(carList, j, this.props.filter[j]);
+                }
             }
-            this.props.onSetCounter(carsNumber);
-            console.log("liczba samochodów: " + carsNumber);
-
-            // this.state.carList.forEach((item, index) => {
-            //     console.log(item);
-            // })
-
         }
-        // else {
-        //     var cars = (this.state.carList.map(car => {
-        //         if (car) {
-        //             console.log(car.main_image);
-        //             return (
-        //                 <CarCard
-        //                     id={car.id}
-        //                     key={car.id}
-        //                     make={car.make}
-        //                     model={car.model}
-        //                     img={car.main_image}
-        //                     power={car.power}
-        //                     engine={car.engine}
-        //                     mileage={car.mileage}
-        //                     price={car.price}
-        //                     transmission={car.transmission}
-        //                     type={car.type}
-        //                     year={car.year}
-        //                 />
-        //             )
-        //         }
-        //     }))
-        // }
 
+        for (const i in carList) {
+            const car = carList[i];
+            // carsNumber++;
 
+            cars.push(
+                <CarCard
+                    id={car.id}
+                    key={car.id}
+                    make={car.make}
+                    model={car.model}
+                    img={car.main_image}
+                    power={car.power}
+                    engine={car.engine}
+                    mileage={car.mileage}
+                    price={car.price}
+                    transmission={car.transmission}
+                    type={car.type}
+                    year={car.year}
+                />
+            )
+        }
+       
         return (
             <Auxiliary>
                 Car's list here
@@ -100,18 +80,31 @@ class CarList extends Component {
                 <p>{this.props.counter}</p>
             </Auxiliary>
         )
-    }    
+    }
+}
+
+var filter = (array, filterType, filterValue) => {
+    let newCarArray = [];
+    for (const i in array) {
+        const car = array[i];
+        // carsNumber++;
+        if(car[filterType] == filterValue) {
+            newCarArray.push(car);
+        }
+    }
+    return newCarArray;
 }
 
 const mapStateToProps = state => {
     return {
-        counter: state.carsCounter
+        counter: state.carsCounter,
+        filter: state.Filter
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSetCounter: (carsNumber) => dispatch({type: 'SET', ctr: carsNumber})
+        onSetCounter: (carsNumber) => dispatch({ type: 'SET', ctr: carsNumber })
     };
 };
 

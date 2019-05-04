@@ -1,16 +1,15 @@
 const initialState = {
-    engineFilter: 'diesel'
+    Filter: {
+        make: '',
+        engine: 'Diesel',
+
+    }
 }
 
 const filterReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "CHECK":
-            return {
-                state
-            };
-        default:
-            return state;
-    }
+
+    return state;
+
 }
 
 export default filterReducer;

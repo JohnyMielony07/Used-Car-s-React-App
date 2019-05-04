@@ -8,7 +8,7 @@ import { Provider} from 'react-redux';
 import reducer from './store/reducer';
 import filterReducer from './store/filterReducer';
 
-const store = createStore(combineReducers({reducer, filterReducer}));
+const store = createStore(filterReducer);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

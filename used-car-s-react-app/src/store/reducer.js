@@ -6,6 +6,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "SET":
             return {
+                ...state,
                 carsCounter: action.ctr
             };
         default:
