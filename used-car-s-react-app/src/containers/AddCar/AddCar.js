@@ -196,7 +196,7 @@ class AddCar extends Component {
                     elementType="selectSingle"
                     inputName="type"
                     inputLabel="Type"
-                    options="coupe, sedan, kombi, SUV, VAN"
+                    options="coupe, sedan, kombi, SUV, VAN, hatchback"
                     inputValue={this.inputTypeHandler}
                 />
                 <Input
@@ -219,7 +219,7 @@ class AddCar extends Component {
                     elementType="selectSingle"
                     inputName="transmission"
                     inputLabel="Transmission"
-                    options="Automatic, Manual"
+                    options="automatic, manual"
                     inputValue={this.inputTransmissionHandler}
                 />
                 <Input

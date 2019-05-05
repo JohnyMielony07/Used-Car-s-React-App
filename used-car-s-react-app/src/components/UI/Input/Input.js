@@ -25,6 +25,7 @@ const input = (props) => {
         case ('select'):
             inputElement = (<select
                 name={props.inputName} 
+                onChange={props.inputValue}
                 multiple
             //value={props.value}
             // onChange={props.changed}
@@ -45,7 +46,6 @@ const input = (props) => {
             name={props.inputName}            
             onChange={props.inputValue}
         //value={props.value}
-        // onChange={props.changed}
         >
             {props.options.split(', ').map(el => (
                 <option key={el} value={el}>

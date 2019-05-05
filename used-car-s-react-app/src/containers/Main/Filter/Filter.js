@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Input from '../../../components/UI/Input/Input';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const Wrapper = styled.div`
   display:flex;
@@ -11,6 +12,7 @@ const Wrapper = styled.div`
 
 
 class filter extends Component {
+
     render() {
         return (
             <Wrapper>
@@ -20,13 +22,15 @@ class filter extends Component {
                     inputName="cars"
                     inputLabel="Cars"
                     options="Audi, BMW, Mercedes, Toyota"
+                    inputValue={(event) => this.props.onChangeMake(event.target.value)}
                 />
                 <Input
                     key="2"
                     elementType="select"
                     inputName="type"
                     inputLabel="Type"
-                    options="coupe, sedan, kombi, SUV, VAN"
+                    options="coupe, sedan, kombi, SUV, VAN, hatchback"
+                    inputValue={(event) => this.props.onChangeType(event.target.value)}
                 />
                 <Input
                     key="3"
@@ -58,17 +62,31 @@ class filter extends Component {
                     inputName="engine"
                     inputLabel="Engine"
                     options="Petrol, Diesel, Hybrid, EV"
+                    inputValue={(event) => this.props.onChangeEngine(event.target.value)}
                 />
                 <Input
                     key="8"
                     elementType="select"
                     inputName="transmission"
                     inputLabel="Transmission"
-                    options="Automatic, Manual"
+                    options="automatic, manual"
+                    inputValue={(event) => this.props.onChangeTransmission(event.target.value)}
                 />
+                <button>
+                    Refresh
+                </button>
             </Wrapper>
         )
     }
 }
 
-export default filter;
+const mapDispatchToProps = dispatch => {
+    return {
+        onChangeEngine: (engine) => dispatch({ type: 'CHANGE_ENGINE', value: engine }),
+        onChangeTransmission: (transmission) => dispatch({ type: 'CHANGE_TRANSMISSION', value: transmission }),
+        onChangeMake: (make) => dispatch({ type: 'CHANGE_MAKE', value: make }),
+        onChangeType: (type) => dispatch({ type: 'CHANGE_TYPE', value: type })
+    };
+};
+
+export default connect(null, mapDispatchToProps)(filter);

@@ -98,7 +98,7 @@ var filter = (array, filterType, filterValue) => {
 const mapStateToProps = state => {
     return {
         counter: state.carsCounter,
-        filter: state.Filter
+        filter: state
     };
 };
 
