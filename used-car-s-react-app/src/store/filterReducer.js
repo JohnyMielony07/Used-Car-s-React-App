@@ -28,6 +28,15 @@ const filterReducer = (state = initialState, action) => {
                 ...state,
                 type: action.value
             };
+        case "CLEAR_FILTERING":
+            return {
+                ...state,
+                make: '',
+                engine: '',
+                transmission: '',
+                make: '',
+                type: ''
+            };
 
         default:
             return state;

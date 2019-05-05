@@ -72,8 +72,8 @@ class filter extends Component {
                     options="automatic, manual"
                     inputValue={(event) => this.props.onChangeTransmission(event.target.value)}
                 />
-                <button>
-                    Refresh
+                <button onClick={this.props.onClear}>
+                    Clear filtering
                 </button>
             </Wrapper>
         )
@@ -85,7 +85,8 @@ const mapDispatchToProps = dispatch => {
         onChangeEngine: (engine) => dispatch({ type: 'CHANGE_ENGINE', value: engine }),
         onChangeTransmission: (transmission) => dispatch({ type: 'CHANGE_TRANSMISSION', value: transmission }),
         onChangeMake: (make) => dispatch({ type: 'CHANGE_MAKE', value: make }),
-        onChangeType: (type) => dispatch({ type: 'CHANGE_TYPE', value: type })
+        onChangeType: (type) => dispatch({ type: 'CHANGE_TYPE', value: type }),
+        onClear: () => dispatch({ type: 'CLEAR_FILTERING'})
     };
 };
 
