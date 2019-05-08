@@ -16,7 +16,7 @@ class CarList extends Component {
     state = {
         startedCarList: [],
         loading: true,
-        filteringProperty: ['engine', 'cars', 'type', 'transmission', 'make']
+        filteringProperty: ['engine', 'cars', 'type', 'transmission', 'make','priceFrom','priceTo']
     }
 
     componentDidMount() {
@@ -83,8 +83,28 @@ class CarList extends Component {
     }
 }
 
-var filter = (array, filterType, filterValue) => {
+let filter = (array, filterType, filterValue) => {
     let newCarArray = [];
+    if(filterType === 'priceFrom') {
+        for (const i in array) {
+            const car = array[i];
+            // carsNumber++;
+            if(car['price'] >= parseInt(filterValue)) {
+                newCarArray.push(car);
+            }
+        }
+        return newCarArray;
+    } else if(filterType === 'priceTo') {
+        for (const i in array) {
+            const car = array[i];
+            // carsNumber++;
+            if(car['price'] <= parseInt(filterValue)) {
+                newCarArray.push(car);
+            }
+        }
+        return newCarArray;
+    }
+    
     for (const i in array) {
         const car = array[i];
         // carsNumber++;

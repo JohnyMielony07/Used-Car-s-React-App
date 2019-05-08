@@ -37,12 +37,14 @@ class filter extends Component {
                     elementType="number"
                     inputName="price from"
                     inputLabel="Price range"
+                    inputValue={(event) => this.props.onChangePriceFrom(event.target.value)}
                 />
                 <Input
                     key="4"
                     elementType="number"
                     inputName="price to"
                     inputLabel="-"
+                    inputValue={(event) => this.props.onChangePriceTo(event.target.value)}
                 />
                 <Input
                     key="5"
@@ -86,6 +88,8 @@ const mapDispatchToProps = dispatch => {
         onChangeTransmission: (transmission) => dispatch({ type: 'CHANGE_TRANSMISSION', value: transmission }),
         onChangeMake: (make) => dispatch({ type: 'CHANGE_MAKE', value: make }),
         onChangeType: (type) => dispatch({ type: 'CHANGE_TYPE', value: type }),
+        onChangePriceFrom: (type) => dispatch({ type: 'CHANGE_PRICEFROM', value: type }),
+        onChangePriceTo: (type) => dispatch({ type: 'CHANGE_PRICETO', value: type }),
         onClear: () => dispatch({ type: 'CLEAR_FILTERING'})
     };
 };

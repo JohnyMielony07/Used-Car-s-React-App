@@ -4,6 +4,8 @@ const initialState = {
     transmission: '',
     make: '',
     type: '',
+    priceFrom: 0,
+    priceTo: 0
 }
 
 const filterReducer = (state = initialState, action) => {
@@ -27,6 +29,16 @@ const filterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 type: action.value
+            };
+        case "CHANGE_PRICEFROM":
+            return {
+                ...state,
+                priceFrom: action.value
+            };
+        case "CHANGE_PRICETO":
+            return {
+                ...state,
+                priceTo: action.value
             };
         case "CLEAR_FILTERING":
             return {
