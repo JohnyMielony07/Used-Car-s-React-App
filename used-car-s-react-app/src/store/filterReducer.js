@@ -5,7 +5,8 @@ const initialState = {
     make: '',
     type: '',
     priceFrom: 0,
-    priceTo: 0
+    priceTo: 0,
+    mileage: 0
 }
 
 const filterReducer = (state = initialState, action) => {
@@ -39,6 +40,16 @@ const filterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 priceTo: action.value
+            };
+        case "CHANGE_MILEAGEFROM":
+            return {
+                ...state,
+                mileageFrom: action.value
+            };
+        case "CHANGE_MILEAGETO":
+            return {
+                ...state,
+                mileageTo: action.value
             };
         case "CLEAR_FILTERING":
             return {

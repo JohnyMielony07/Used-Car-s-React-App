@@ -16,7 +16,7 @@ class CarList extends Component {
     state = {
         startedCarList: [],
         loading: true,
-        filteringProperty: ['engine', 'cars', 'type', 'transmission', 'make','priceFrom','priceTo']
+        filteringProperty: ['engine', 'cars', 'type', 'transmission', 'make', 'priceFrom', 'priceTo', 'mileageFrom', 'mileageTo']
     }
 
     componentDidMount() {
@@ -70,7 +70,7 @@ class CarList extends Component {
                 />
             )
         }
-       
+
         return (
             <Auxiliary>
                 Car's list here
@@ -85,34 +85,54 @@ class CarList extends Component {
 
 let filter = (array, filterType, filterValue) => {
     let newCarArray = [];
-    if(filterType === 'priceFrom') {
-        for (const i in array) {
-            const car = array[i];
-            // carsNumber++;
-            if(car['price'] >= parseInt(filterValue)) {
-                newCarArray.push(car);
+    switch (filterType) {
+        case 'priceFrom':
+            for (const i in array) {
+                const car = array[i];
+                // carsNumber++;
+                if (car['price'] >= parseInt(filterValue)) {
+                    newCarArray.push(car);
+                }
             }
-        }
-        return newCarArray;
-    } else if(filterType === 'priceTo') {
-        for (const i in array) {
-            const car = array[i];
-            // carsNumber++;
-            if(car['price'] <= parseInt(filterValue)) {
-                newCarArray.push(car);
+            return newCarArray;
+        case 'priceTo':
+            for (const i in array) {
+                const car = array[i];
+                // carsNumber++;
+                if (car['price'] <= parseInt(filterValue)) {
+                    newCarArray.push(car);
+                }
             }
-        }
-        return newCarArray;
+            return newCarArray;
+        case 'mileageFrom':
+            for (const i in array) {
+                const car = array[i];
+                // carsNumber++;
+                if (car['mileage'] >= parseInt(filterValue)) {
+                    newCarArray.push(car);
+                }
+            }
+            return newCarArray;
+        case 'mileageTo':
+            for (const i in array) {
+                const car = array[i];
+                // carsNumber++;
+                if (car['mileage'] <= parseInt(filterValue)) {
+                    newCarArray.push(car);
+                }
+            }
+            return newCarArray;
+        default:
+            for (const i in array) {
+                const car = array[i];
+                // carsNumber++;
+                if (car[filterType] == filterValue) {
+                    newCarArray.push(car);
+                }
+            }
+            return newCarArray;
     }
-    
-    for (const i in array) {
-        const car = array[i];
-        // carsNumber++;
-        if(car[filterType] == filterValue) {
-            newCarArray.push(car);
-        }
-    }
-    return newCarArray;
+
 }
 
 const mapStateToProps = state => {

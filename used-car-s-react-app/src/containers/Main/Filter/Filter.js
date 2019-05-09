@@ -49,14 +49,16 @@ class filter extends Component {
                 <Input
                     key="5"
                     elementType="number"
-                    inputName="price from"
+                    inputName="mileage from"
                     inputLabel="Mileage range"
+                    inputValue={(event) => this.props.onChangeMileageFrom(event.target.value)}
                 />
                 <Input
                     key="6"
                     elementType="number"
-                    inputName="price to"
+                    inputName="mileage to"
                     inputLabel="-"
+                    inputValue={(event) => this.props.onChangeMileageTo(event.target.value)}
                 />
                 <Input
                     key="7"
@@ -90,6 +92,8 @@ const mapDispatchToProps = dispatch => {
         onChangeType: (type) => dispatch({ type: 'CHANGE_TYPE', value: type }),
         onChangePriceFrom: (type) => dispatch({ type: 'CHANGE_PRICEFROM', value: type }),
         onChangePriceTo: (type) => dispatch({ type: 'CHANGE_PRICETO', value: type }),
+        onChangeMileageFrom: (type) => dispatch({ type: 'CHANGE_MILEAGEFROM', value: type }),
+        onChangeMileageTo: (type) => dispatch({ type: 'CHANGE_MILEAGETO', value: type }),
         onClear: () => dispatch({ type: 'CLEAR_FILTERING'})
     };
 };
